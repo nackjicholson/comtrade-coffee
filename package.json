@@ -1,0 +1,78 @@
+{
+  "name": "comtrade-coffee",
+  "version": "0.0.0",
+  "description": "Sample usage of the comtrade UN database API",
+  "repository": "nackjicholson/comtrade-coffee",
+  "author": {
+    "name": "Will Vaughn",
+    "email": "willieviseoae@gmail.com"
+  },
+  "main": "dist/comtrade-coffee.js",
+  "engines": {
+    "node": ">=0.12"
+  },
+  "bugs": {
+    "url": "https://github.com/nackjicholson/comtrade-coffee/issues"
+  },
+  "homepage": "https://github.com/nackjicholson/comtrade-coffee#readme",
+  "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "babel-core": "^6.5.1",
+    "babel-loader": "^6.2.2",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-register": "^6.5.1",
+    "eslint": "^1.10.3",
+    "eslint-config-airbnb": "^5.0.0",
+    "eslint-plugin-react": "^3.16.1",
+    "isparta": "^4.0.0",
+    "jscs": "^2.9.0",
+    "jsdom": "^8.0.2",
+    "mocha": "^2.4.5",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "sinon": "^1.17.3",
+    "teaspoon": "^6.1.1",
+    "watch": "^0.17.1",
+    "webpack": "^1.12.13"
+  },
+  "dependencies": {},
+  "scripts": {
+    "cov": "babel-node node_modules/.bin/isparta cover --report html --report text --excludes src/**/*.test.js _mocha -- --require src/test/jsdomHelper.js --reporter list src/**/*.test.js",
+    "lint": "eslint src && jscs src",
+    "build": "node build/buildLibrary.js",
+    "start": "node build/devServer.js",
+    "test": "mocha --compilers js:babel-register --require src/test/jsdomHelper.js src/**/*.test.js",
+    "tdd": "watch 'clear && npm run -s test' src",
+    "tdd:lint": "watch 'clear && npm run -s lint && npm run -s test' src"
+  },
+  "eslintConfig": {
+    "extends": "airbnb",
+    "env": {
+      "mocha": true
+    },
+    "rules": {
+      "comma-dangle": 0
+    }
+  },
+  "jscsConfig": {
+    "preset": "airbnb",
+    "esnext": true,
+    "requireCurlyBraces": null,
+    "requireTrailingComma": null,
+    "validateQuoteMarks": {
+      "mark": "'",
+      "escape": true,
+      "ignoreJSX": true
+    }
+  },
+  "babel": {
+    "only": [
+      "src"
+    ],
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  }
+}
