@@ -4,6 +4,8 @@ var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var webpackSharedConfig = require('../webpack.config');
 
+// Config which tells webpack-dev-server to bundle the
+// comtradeCoffeeApp on the fly and provide hot module replacement
 var devServerConfig = {
   entry: {
     comtradeCoffeeApp: [
@@ -22,10 +24,12 @@ var devServerConfig = {
   ]
 };
 
+// Extends the shared config from ../webpack.config.js with the devServerConfig
 var webpackConfig = Object.assign({}, webpackSharedConfig, devServerConfig);
 
-var compiler = webpack(webpackConfig);
-var server = new WebpackDevServer(compiler, {
+// Start the webpack-dev-server, and pass it the configured webpack bundler instance.
+var bundler = webpack(webpackConfig);
+var server = new WebpackDevServer(bundler, {
   contentBase: 'src/public',
   publicPath: '/js/dist/',
   hot: true,
