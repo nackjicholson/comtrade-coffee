@@ -4,9 +4,15 @@
 
 ### Intro
 
-This project is meant to be a small digestible example of how I might get started building a React/Redux application from scratch. It is meant to show my comfort with that ecosystem, and usage of tools to help me build in that ecosystem quickly. Much of the foundation of this app was generated with a yeoman generator that I use often when starting a new project. I then tweaked it's output slightly (because the generator is designed for publish npm packages) and then began writing the app.
+This project is meant to be a small digestible example of how I might get started building a React/Redux application
+from scratch. It is meant to show my comfort with that ecosystem, and usage of tools to help me build in that ecosystem
+quickly. Much of the foundation of this app was generated with a yeoman generator that I use often when starting a new
+project ([yo react-nack](https://github.com/nackjicholson/generator-react-nack).
 
-The Application is a simple visualization based off of the [Comtrade UN Data API](http://comtrade.un.org/data/doc/api/). It pulls information from that service about worldwide coffee trading. So far it allows you to pick a country that you're interested in and view a visualization of who that country partners with in coffee trading, and allows you to compare the USD amount and the Kg weight of those trades during 2015.
+The Application is a simple visualization based off of the [Comtrade UN Data API](http://comtrade.un.org/data/doc/api/).
+It pulls information from that service about worldwide coffee trading. So far it allows you to pick a country that
+you're interested in and view a visualization of who that country partners with in coffee trading, and allows you to
+compare the USD amount and the Kg weight of those trades during 2015.
 
 It's not much but it's a start.
 

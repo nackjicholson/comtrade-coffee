@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "Sample usage of the comtrade UN database API",
   "repository": "nackjicholson/comtrade-coffee",
+  "license": "MIT",
   "author": {
     "name": "Will Vaughn",
     "email": "willieviseoae@gmail.com"
@@ -29,18 +30,21 @@
     "jscs": "^2.9.0",
     "jsdom": "^8.0.2",
     "mocha": "^2.4.5",
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
+    "react-hot-loader": "^1.3.0",
     "sinon": "^1.17.3",
     "teaspoon": "^6.1.1",
     "watch": "^0.17.1",
-    "webpack": "^1.12.13"
+    "webpack": "^1.12.13",
+    "webpack-dev-server": "^1.14.1"
   },
-  "dependencies": {},
+  "dependencies": {
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
+  },
   "scripts": {
     "cov": "babel-node node_modules/.bin/isparta cover --report html --report text --excludes src/**/*.test.js _mocha -- --require src/test/jsdomHelper.js --reporter list src/**/*.test.js",
     "lint": "eslint src && jscs src",
-    "build": "node build/buildLibrary.js",
+    "build": "node build/build.js",
     "start": "node build/devServer.js",
     "test": "mocha --compilers js:babel-register --require src/test/jsdomHelper.js src/**/*.test.js",
     "tdd": "watch 'clear && npm run -s test' src",
