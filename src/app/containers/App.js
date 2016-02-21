@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { appInit } from '../redux/modules/root';
+import { fetchTradeData } from '../redux/modules/tradeData';
 import comtrade from '../services/comtrade';
 
 class App extends React.Component {
   componentDidMount() {
     const partnerArea = this.props.partnerAreas.selectedId;
     const tradeRegime = this.props.tradeRegimes.selectedId;
-    this.props.appInit({ partnerArea, tradeRegime });
+    this.props.requestTradeData({ partnerArea, tradeRegime });
   }
 
   render() {
@@ -19,7 +19,7 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  appInit: React.PropTypes.func,
+  requestTradeData: React.PropTypes.func,
   partnerAreas: React.PropTypes.object,
   tradeRegimes: React.PropTypes.object,
   tradeData: React.PropTypes.object
@@ -27,8 +27,8 @@ App.propTypes = {
 
 const mapDispatchToProps = (dispatch) =>
   ({
-    appInit(parameters) {
-      dispatch(appInit(comtrade, parameters));
+    requestTradeData(parameters) {
+      dispatch(fetchTradeData(comtrade, parameters));
     }
   });
 
