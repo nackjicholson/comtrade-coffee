@@ -1,17 +1,35 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Greet from '../components/Greet';
+import { appInit } from '../redux/modules/root';
+import comtrade from '../services/comtrade';
 
 class App extends React.Component {
-  render() {
-    const { greeting } = this.props;
+  componentDidMount() {
+    const partnerArea = this.props.partnerAreas.selectedId;
+    const tradeRegime = this.props.tradeRegimes.selectedId;
+    this.props.appInit({ partnerArea, tradeRegime });
+  }
 
-    return <Greet greeting={greeting.greeting} message={greeting.message} />;
+  render() {
+    console.log(this.props);
+    return (
+      <pre>{JSON.stringify(this.props.tradeData, null, 2)}</pre>
+    );
   }
 }
 
 App.propTypes = {
-  greeting: React.PropTypes.object
+  appInit: React.PropTypes.func,
+  partnerAreas: React.PropTypes.object,
+  tradeRegimes: React.PropTypes.object,
+  tradeData: React.PropTypes.object
 };
 
-export default connect(state => state)(App);
+const mapDispatchToProps = (dispatch) =>
+  ({
+    appInit(parameters) {
+      dispatch(appInit(comtrade, parameters));
+    }
+  });
+
+export default connect(state => state, mapDispatchToProps)(App);

@@ -25,46 +25,13 @@ describe('app/services/comtrade', () => {
 
       const parameters = {
         partnerArea: 'test.partnerArea',
-        tradeRegime: 'test.tradeRegime'};
+        tradeRegime: 'test.tradeRegime'
+      };
 
       comtrade
         .get(parameters)
         .then((actual) => {
           assert.deepEqual(actual, coffeeData, 'returns json parsed coffee data');
-        })
-        .then(done, done);
-    });
-  });
-
-  describe('partnerAreas', () => {
-    it('should request partnerAreas list from comtrade API', (done) => {
-      const responseData = { more: false, results: 'test.results' };
-
-      nock('http://comtrade.un.org')
-        .get('/data/cache/partnerAreas.json')
-        .reply(200, responseData);
-
-      comtrade
-        .partnerAreas()
-        .then((actual) => {
-          assert.deepEqual(actual, responseData);
-        })
-        .then(done, done);
-    });
-  });
-
-  describe('tradeRegimes', () => {
-    it('should request tradeRegimes list from comtrade API', (done) => {
-      const responseData = { more: false, results: 'test.results' };
-
-      nock('http://comtrade.un.org')
-        .get('/data/cache/tradeRegimes.json')
-        .reply(200, responseData);
-
-      comtrade
-        .tradeRegimes()
-        .then((actual) => {
-          assert.deepEqual(actual, responseData);
         })
         .then(done, done);
     });

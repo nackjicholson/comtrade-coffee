@@ -6,9 +6,9 @@ export const TRADE_DATA_FAILURE = 'TRADE_DATA_FAILURE';
 export const TRADE_DATA_SUCCESS = 'TRADE_DATA_SUCCESS';
 
 // Actions
-const tradeDataFailure = createAction(TRADE_DATA_FAILURE);
-const tradeDataRequest = createAction(TRADE_DATA_REQUEST);
-const tradeDataSuccess = createAction(TRADE_DATA_SUCCESS, (tradeData) =>
+export const tradeDataFailure = createAction(TRADE_DATA_FAILURE);
+export const tradeDataRequest = createAction(TRADE_DATA_REQUEST);
+export const tradeDataSuccess = createAction(TRADE_DATA_SUCCESS, (tradeData) =>
   ({ dataset: tradeData.dataset, lastUpdated: Date.now() })
 );
 

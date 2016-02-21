@@ -6,10 +6,10 @@ export const PARTNER_AREAS_FAILURE = 'PARTNER_AREAS_FAILURE';
 export const PARTNER_AREAS_SUCCESS = 'PARTNER_AREAS_SUCCESS';
 
 // Actions
-const partnerAreasFailure = createAction(PARTNER_AREAS_FAILURE);
-const partnerAreasRequest = createAction(PARTNER_AREAS_REQUEST);
-const partnerAreasSuccess = createAction(PARTNER_AREAS_SUCCESS, (partnerAreas) =>
-  ({ dataset: partnerAreas.dataset, lastUpdated: Date.now() })
+export const partnerAreasFailure = createAction(PARTNER_AREAS_FAILURE);
+export const partnerAreasRequest = createAction(PARTNER_AREAS_REQUEST);
+export const partnerAreasSuccess = createAction(PARTNER_AREAS_SUCCESS, (partnerAreas) =>
+  ({ results: partnerAreas.results, lastUpdated: Date.now() })
 );
 
 export function fetchPartnerAreas(comtrade, parameters) {
@@ -31,7 +31,7 @@ export function fetchPartnerAreas(comtrade, parameters) {
 }
 
 // Reducer
-const defaultState = { isFetching: false, dataset: [] };
+const defaultState = { isFetching: false, results: [], selectedId: '757' };
 
 function storePartnerAreas(state, partnerAreas) {
   return Object.assign({}, state, { isFetching: false }, partnerAreas);

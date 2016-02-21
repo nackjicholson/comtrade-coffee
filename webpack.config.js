@@ -11,6 +11,10 @@ module.exports = {
         test: /\.js$/,
         loaders: ['react-hot', 'babel'],
         include: path.resolve('./src')
+      },
+      {
+        test: /\.json$/,
+        loader: 'json'
       }
     ]
   },
