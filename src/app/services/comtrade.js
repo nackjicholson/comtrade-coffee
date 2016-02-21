@@ -6,9 +6,15 @@ const comtrade = {
       .then(req => req.json());
   },
 
-  partnerAreas() {},
+  partnerAreas() {
+    return fetch(`http://comtrade.un.org/data/cache/partnerAreas.json`)
+      .then(req => req.json());
+  },
 
-  tradeRegimes() {}
+  tradeRegimes() {
+    return fetch(`http://comtrade.un.org/data/cache/tradeRegimes.json`)
+      .then(req => req.json());
+  }
 };
 
 export default comtrade;
