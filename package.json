@@ -39,7 +39,11 @@
   },
   "dependencies": {
     "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "react-dom": "^0.14.7",
+    "react-redux": "^4.4.0",
+    "redux": "^3.3.1",
+    "redux-actions": "^0.9.1",
+    "redux-thunk": "^1.0.3"
   },
   "scripts": {
     "cov": "babel-node node_modules/.bin/isparta cover --report html --report text --excludes src/**/*.test.js _mocha -- --require src/test/jsdomHelper.js --reporter list src/**/*.test.js",
