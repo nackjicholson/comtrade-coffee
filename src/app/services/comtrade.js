@@ -1,6 +1,4 @@
 import fetch from 'isomorphic-fetch';
-import partnerAreas from './partnerAreas.json';
-import tradeRegimes from './tradeRegimes.json';
 
 const comtrade = {
   get(parameters) {
