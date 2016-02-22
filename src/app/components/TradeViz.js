@@ -1,5 +1,6 @@
 import React from 'react';
 import { Treemap } from 'react-d3';
+import Griddle from 'griddle-react';
 
 function ChartPanel({ tradeData }) {
   // The loader gif is a span that just takes up space by default.
@@ -15,17 +16,24 @@ function ChartPanel({ tradeData }) {
       {loaderGif}
       <Treemap
         data={tradeData.data.valueTreemap}
-        width={800}
+        width={1000}
         height={300}
         textColor="#484848"
         title="Trade Value ($USD) by Partner 2015"
       />
       <Treemap
         data={tradeData.data.quantityTreemap}
-        width={800}
+        width={1000}
         height={300}
         textColor="#484848"
         title="Trade Quantity (Kg) by Partner 2015"
+      />
+
+      <h3>Raw Data from Comtrade API</h3>
+      <Griddle
+        results={tradeData.data.raw}
+        resultsPerPage="50"
+        columns={['rtTitle', 'TradeValue', 'TradeQuantity']}
       />
     </div>
   );

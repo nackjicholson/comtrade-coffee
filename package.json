@@ -40,6 +40,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "griddle-react": "^0.3.1",
     "isomorphic-fetch": "^2.2.1",
     "react": "^0.14.7",
     "react-d3": "^0.4.0",
