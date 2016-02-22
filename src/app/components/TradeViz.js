@@ -4,11 +4,11 @@ import Griddle from 'griddle-react';
 
 function ChartPanel({ tradeData }) {
   // The loader gif is a span that just takes up space by default.
-  let loaderGif = <span style={{ height: 30, display: 'block' }} />;
+  let loaderGif = <span style={{ height: 60, display: 'block' }} />;
 
   // But if the tradeData.isFetching show a spinning UN badge.
   if (tradeData.isFetching) {
-    loaderGif = <img src="/images/un_loader.gif" width="30" height="30" />;
+    loaderGif = <img src="/images/un_loader.gif" width="60" height="60" />;
   }
 
   return (
