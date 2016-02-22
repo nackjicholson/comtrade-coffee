@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchTradeData } from '../redux/modules/tradeData';
+import TradeViz from '../components/TradeViz';
+import comtrade from '../services/comtrade';
+import { fetchTradeData } from '../redux/modules/tradeData/';
 import { selectPartnerArea } from '../redux/modules/partnerAreas';
 import { selectTradeRegime } from '../redux/modules/tradeRegimes';
-import comtrade from '../services/comtrade';
 
 class App extends React.Component {
   constructor(props) {
@@ -42,27 +43,29 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <select
-          id="partner-area"
-          name="partner-area"
-          onChange={this._handlePartnerAreaChange}
-          defaultValue={this.props.partnerAreas.selectedId}
-        >
-          {this.props.partnerAreas.results.map((partnerArea, index) =>
-            <option key={index} value={partnerArea.id}>{partnerArea.text}</option>
-          )}
-        </select>
-        <select
-          id="trade-regime"
-          name="trade-regime"
-          onChange={this._handleTradeRegimeChange}
-          defaultValue={this.props.tradeRegimes.selectedId}
-        >
-          {this.props.tradeRegimes.results.map((tradeRegime, index) =>
-            <option key={index} value={tradeRegime.id}>{tradeRegime.text}</option>
-          )}
-        </select>
-        <pre>{JSON.stringify(this.props.tradeData, null, 2)}</pre>
+        <div>
+          <select
+            id="partner-area"
+            name="partner-area"
+            onChange={this._handlePartnerAreaChange}
+            defaultValue={this.props.partnerAreas.selectedId}
+          >
+            {this.props.partnerAreas.results.map((partnerArea, index) =>
+              <option key={index} value={partnerArea.id}>{partnerArea.text}</option>
+            )}
+          </select>
+          <select
+            id="trade-regime"
+            name="trade-regime"
+            onChange={this._handleTradeRegimeChange}
+            defaultValue={this.props.tradeRegimes.selectedId}
+          >
+            {this.props.tradeRegimes.results.map((tradeRegime, index) =>
+              <option key={index} value={tradeRegime.id}>{tradeRegime.text}</option>
+            )}
+          </select>
+        </div>
+        <TradeViz tradeData={this.props.tradeData} />
       </div>
     );
   }

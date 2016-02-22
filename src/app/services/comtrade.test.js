@@ -14,7 +14,7 @@ describe('app/services/comtrade', () => {
           type: 'C',
           freq: 'A',
           px: 'HS',
-          cc: '09', // coffee buzz buzz!
+          cc: '090111', // coffee buzz buzz!
           fmt: 'json',
           ps: '2015',
           r: 'all',

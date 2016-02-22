@@ -2,12 +2,12 @@ import assert from 'assert';
 import { spy, stub, useFakeTimers } from 'sinon';
 import
   tradeDataReducer,
-  {
-    TRADE_DATA_FAILURE,
-    TRADE_DATA_REQUEST,
-    TRADE_DATA_SUCCESS,
-    fetchTradeData
-  } from './tradeData';
+{
+  TRADE_DATA_FAILURE,
+  TRADE_DATA_REQUEST,
+  TRADE_DATA_SUCCESS,
+  fetchTradeData
+} from './';
 
 describe('app/redux/modules/tradeData', () => {
   describe('fetchTradeData action', () => {
@@ -19,7 +19,14 @@ describe('app/redux/modules/tradeData', () => {
       // The data comes in from the comtrade api with some validation data, which
       // will be ignored from the time being. The data relevant to the app, is the
       // data stored in the "dataset" field of the tradeData results.
-      const comtradeData = { validation: 'test.validation', dataset: 'test.dataset' };
+      const comtradeData = {
+        validation: 'test.validation',
+        dataset: [
+          { rtTitle: 'alpha', TradeValue: 1, TradeQuantity: 4 },
+          { rtTitle: 'bravo', TradeValue: 2, TradeQuantity: 5 },
+          { rtTitle: 'charlie', TradeValue: 3, TradeQuantity: 6 }
+        ]
+      };
 
       const comtrade = { get: stub() };
       const parameters = { tradeRegime: 'test.tradeRegime', partnerAreas: 'test.partnerAreas' };
@@ -59,7 +66,19 @@ describe('app/redux/modules/tradeData', () => {
           const expectedSuccessAction = {
             type: TRADE_DATA_SUCCESS,
             payload: {
-              dataset: 'test.dataset',
+              data: {
+                raw: comtradeData.dataset,
+                quantityTreemap: [
+                  { label: 'alpha', value: 4 },
+                  { label: 'bravo', value: 5 },
+                  { label: 'charlie', value: 6 }
+                ],
+                valueTreemap: [
+                  { label: 'alpha', value: 1 },
+                  { label: 'bravo', value: 2 },
+                  { label: 'charlie', value: 3 }
+                ]
+              },
               lastUpdated: Date.now()
             }
           };
@@ -147,19 +166,19 @@ describe('app/redux/modules/tradeData', () => {
       const actual = tradeDataReducer(undefined, {});
       const expected = {
         isFetching: false,
-        dataset: []
+        data: {}
       };
 
       assert.deepEqual(actual, expected, 'tradeData is defaulted');
     });
 
     it('should handle TRADE_DATA_SUCCESS', () => {
-      const inState = { isFetching: true, dataset: 'test.oldDataset' };
+      const inState = { isFetching: true, data: 'test.oldDataset' };
       const action = {
         type: TRADE_DATA_SUCCESS,
         payload: {
           lastUpdated: 'test.lastUpdated',
-          dataset: 'test.newDataset'
+          data: 'test.newDataset'
         }
       };
 
@@ -167,7 +186,7 @@ describe('app/redux/modules/tradeData', () => {
       const expected = {
         isFetching: false, // isFetching becomes false after success
         lastUpdated: 'test.lastUpdated',
-        dataset: 'test.newDataset'
+        data: 'test.newDataset'
       };
 
       assert.deepEqual(actual, expected, 'updates tradeData state with received action data');

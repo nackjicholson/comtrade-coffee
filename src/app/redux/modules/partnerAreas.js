@@ -10,7 +10,7 @@ export const selectPartnerArea = createAction(SELECT_PARTNER_AREA);
 // Reducer
 const defaultState = {
   results: partnerAreasJSON.results,
-  selectedId: '757'
+  selectedId: '826' // default to "United Kingdom"
 };
 
 function updatePartnerAreaSelection(state, selectedId) {

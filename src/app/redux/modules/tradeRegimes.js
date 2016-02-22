@@ -10,7 +10,7 @@ export const selectTradeRegime = createAction(SELECT_TRADE_REGIME);
 // Reducer
 const defaultState = {
   results: tradeRegimesJSON.results,
-  selectedId: 'all'
+  selectedId: '1'
 };
 
 function updateTradeRegimeSelection(state, selectedId) {
