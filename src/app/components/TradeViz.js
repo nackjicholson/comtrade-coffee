@@ -2,7 +2,7 @@ import React from 'react';
 import { Treemap } from 'react-d3';
 import Griddle from 'griddle-react';
 
-function ChartPanel({ tradeData }) {
+function TradeViz({ tradeData }) {
   // The loader gif is a span that just takes up space by default.
   let loaderGif = <span style={{ height: 60, display: 'block' }} />;
 
@@ -39,4 +39,4 @@ function ChartPanel({ tradeData }) {
   );
 }
 
-export default ChartPanel;
+export default TradeViz;
