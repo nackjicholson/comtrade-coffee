@@ -43,6 +43,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <h1>Reported UN Coffee Trading</h1>
+        <p>Classification Code: 090111 Coffee, not roasted, not decaffeinated</p>
         <div>
           <select
             id="partner-area"
