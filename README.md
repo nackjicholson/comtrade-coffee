@@ -36,6 +36,9 @@ cd comtrade-coffee
 # install dependencies (could take a while)
 npm install
 
+# run tests (not very many, but there are a few)
+npm test
+
 # start the webpack-dev-server
 npm start
 ```
