@@ -34,6 +34,7 @@ function TradeViz({ tradeData }) {
         resultsPerPage="50"
         columns={['rtTitle', 'TradeValue', 'TradeQuantity']}
       />
+      <p>Last Updated: {tradeData.lastUpdated && new Date(tradeData.lastUpdated).toISOString()}</p>
     </div>
   );
 }
