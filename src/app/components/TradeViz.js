@@ -1,6 +1,6 @@
 import React from 'react';
-import { Treemap } from 'react-d3';
 import Griddle from 'griddle-react';
+import { Treemap } from 'react-d3';
 
 function TradeViz({ tradeData }) {
   // The loader gif is a span that just takes up space by default.
@@ -28,8 +28,7 @@ function TradeViz({ tradeData }) {
         textColor="#484848"
         title="Trade Quantity (Kg) by Partner 2015"
       />
-
-      <h3>Raw Data from Comtrade API</h3>
+      <h4>Raw Data from Comtrade API</h4>
       <Griddle
         results={tradeData.data.raw}
         resultsPerPage="50"

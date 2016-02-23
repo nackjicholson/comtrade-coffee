@@ -14,8 +14,8 @@ export const tradeDataSuccess = createAction(TRADE_DATA_SUCCESS, (tradeData) => 
   return {
     data: {
       raw: dataset,
-      quantityTreemap: convertToTreemap(tradeData.dataset, 'rtTitle', 'TradeQuantity'),
-      valueTreemap: convertToTreemap(tradeData.dataset, 'rtTitle', 'TradeValue')
+      quantityTreemap: convertToTreemap(dataset, 'rtTitle', 'TradeQuantity'),
+      valueTreemap: convertToTreemap(dataset, 'rtTitle', 'TradeValue')
     },
     lastUpdated: Date.now()
   };
