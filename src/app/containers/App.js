@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Header from '../components/Header';
 import TradeViz from '../components/TradeViz';
 import comtrade from '../services/comtrade';
 import { fetchTradeData } from '../redux/modules/tradeData/';
@@ -43,8 +44,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Reported UN Coffee Trading</h1>
-        <p>Classification Code: 090111 Coffee, not roasted, not decaffeinated</p>
+        <Header />
         <div>
           <select
             id="partner-area"
