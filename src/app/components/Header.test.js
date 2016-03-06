@@ -6,7 +6,7 @@ import Header from './Header';
 describe('app/components/Header', () => {
   it('should be wrapper div#header', () => {
     const $elements = $(<Header />).render();
-    const actual = $elements.find('div').props('id');
+    const actual = $elements.find('div').dom().id;
     const expected = 'header';
 
     assert.equal(actual, expected, 'displays div#header');

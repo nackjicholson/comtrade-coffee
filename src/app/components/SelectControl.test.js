@@ -6,7 +6,7 @@ import SelectControl from './SelectControl';
 
 describe('app/components/SelectControl', () => {
   it('should render wrapper div', () => {
-    const props = { baseId: 'base' };
+    const props = { id: 'base' };
 
     const actual = $(<SelectControl {...props} />)
       .render()
@@ -18,7 +18,7 @@ describe('app/components/SelectControl', () => {
   });
 
   it('should render label with labelText prop', () => {
-    const props = { baseId: 'base', labelText: 'test.labelText' };
+    const props = { id: 'base', labelText: 'test.labelText' };
 
     const actual = $(<SelectControl {...props} />)
       .render()
@@ -30,7 +30,7 @@ describe('app/components/SelectControl', () => {
   });
 
   it('should render children prop within select list', () => {
-    const props = { baseId: 'base' };
+    const props = { id: 'base' };
 
     const component = (
       <SelectControl {...props}>
@@ -56,7 +56,7 @@ describe('app/components/SelectControl', () => {
   });
 
   it('should be able to select a default option', () => {
-    const props = { baseId: 'base', defaultValue: 'bravo.value' };
+    const props = { id: 'base', defaultValue: 'bravo.value' };
 
     const component = (
       <SelectControl {...props}>
@@ -80,7 +80,7 @@ describe('app/components/SelectControl', () => {
   });
 
   it('should handle selection changes via onSelection callback prop', () => {
-    const props = { baseId: 'base', onSelection: spy() };
+    const props = { id: 'base', onSelection: spy() };
 
     const component = (
       <SelectControl {...props}>

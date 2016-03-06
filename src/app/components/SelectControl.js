@@ -1,20 +1,22 @@
 import React from 'react';
+import { wrapperStyle, controlStyle, labelStyle } from './selectControlStyles';
 
 function SelectControl(props) {
-  const { baseId, children, defaultValue, labelText, onSelection } = props;
+  const { id, children, defaultValue, labelText, onSelection } = props;
 
-  const wrapperId = `${baseId}-wrapper`;
-  const selectId = `${baseId}-select`;
+  const wrapperId = `${id}-wrapper`;
+  const selectId = `${id}-select`;
 
   const handleChange = (event) => {
     onSelection(event.target.value);
   };
 
   return (
-    <div id={wrapperId}>
-      <label htmlFor={selectId}>{labelText}</label>
+    <div id={wrapperId} style={wrapperStyle}>
+      <label htmlFor={selectId} style={labelStyle}>{labelText}</label>
       <select
         id={selectId}
+        style={controlStyle}
         defaultValue={defaultValue}
         onChange={handleChange}
       >
@@ -25,7 +27,7 @@ function SelectControl(props) {
 }
 
 SelectControl.propTypes = {
-  baseId: React.PropTypes.string,
+  id: React.PropTypes.string,
   children: React.PropTypes.array,
   defaultValue: React.PropTypes.any,
   labelText: React.PropTypes.string,
