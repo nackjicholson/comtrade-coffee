@@ -8,7 +8,7 @@ import { fetchTradeData } from '../redux/modules/tradeData/';
 import { selectPartnerArea } from '../redux/modules/partnerAreas';
 import { selectTradeRegime } from '../redux/modules/tradeRegimes';
 
-class App extends React.Component {
+export class App extends React.Component {
   componentDidMount() {
     const partnerArea = this.props.partnerAreas.selectedId;
     const tradeRegime = this.props.tradeRegimes.selectedId;
