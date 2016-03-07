@@ -3,6 +3,7 @@ import assert from 'assert';
 import noop from 'lodash.noop';
 import React from 'react';
 import { noCallThru } from 'proxyquire';
+import { spy } from 'sinon';
 
 const proxyquireStrict = noCallThru();
 
@@ -165,6 +166,71 @@ describe('app/containers/App', () => {
       actual,
       expected,
       'passes data as tradeData prop of TradeViz component'
+    );
+  });
+
+  it('should request trade data on load', () => {
+    const App = loadWithMocks();
+    const props = createProps({ requestTradeData: spy() });
+
+    $(<App {...props} />).render(true);
+
+    assert(
+      props.requestTradeData.calledOnce,
+      'requestTradeData props is called in componentDidMount hook'
+    );
+
+    const actual = props.requestTradeData.args[0];
+    const expected = [{ partnerArea: 'foo', tradeRegime: 'bar' }]; // defaults in createProps
+
+    assert.deepEqual(
+      actual,
+      expected,
+      'called requestTradeData with correct parameters from componentDidMount'
+    );
+  });
+
+  it('should request trade data if selected partner area changes', () => {
+    const App = loadWithMocks();
+    const props = createProps({ requestTradeData: spy() });
+
+    const $app = $(<App {...props} />).render(true);
+    $app.props('partnerAreas', { selectedId: 'baz', results: [] });
+
+    assert(
+      props.requestTradeData.calledTwice,
+      'requestTradeData props is called second time in componentWillReceiveProps hook'
+    );
+
+    const actual = props.requestTradeData.args[1];
+    const expected = [{ partnerArea: 'baz', tradeRegime: 'bar' }];
+
+    assert.deepEqual(
+      actual,
+      expected,
+      'called requestTradeData with correct parameters from componentWillReceiveProps'
+    );
+  });
+
+  it('should request trade data if selected trade regime changes', () => {
+    const App = loadWithMocks();
+    const props = createProps({ requestTradeData: spy() });
+
+    const $app = $(<App {...props} />).render(true);
+    $app.props('tradeRegimes', { selectedId: 'baz', results: [] });
+
+    assert(
+      props.requestTradeData.calledTwice,
+      'requestTradeData props is called second time in componentWillReceiveProps hook'
+    );
+
+    const actual = props.requestTradeData.args[1];
+    const expected = [{ partnerArea: 'foo', tradeRegime: 'baz' }];
+
+    assert.deepEqual(
+      actual,
+      expected,
+      'called requestTradeData with correct parameters from componentWillReceiveProps'
     );
   });
 });
