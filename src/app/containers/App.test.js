@@ -2,10 +2,31 @@ import $ from 'teaspoon';
 import assert from 'assert';
 import noop from 'lodash.noop';
 import React from 'react';
-import { App } from './App';
-import Header from '../components/Header';
-import SelectControl from '../components/SelectControl';
-import TradeViz from '../components/TradeViz';
+import { noCallThru } from 'proxyquire';
+
+const proxyquireStrict = noCallThru();
+
+const Header = () => <div></div>;
+const SelectControl = () => <div></div>;
+const TradeViz = () => <div></div>;
+
+function loadWithMocks() {
+  return proxyquireStrict('./App', {
+    '../components/Header': Header,
+    '../components/SelectControl': SelectControl,
+    '../components/TradeViz': TradeViz,
+    '../services/comtrade': noop,
+    '../redux/modules/tradeData': {
+      fetchTradeData: noop
+    },
+    '../redux/modules/partnerAreas': {
+      selectPartnerArea: noop
+    },
+    '../redux/modules/tradeRegimes': {
+      selectTradeRegime: noop
+    }
+  }).App;
+}
 
 function createProps(props = {}) {
   const defaultProps = {
@@ -17,6 +38,7 @@ function createProps(props = {}) {
 
 describe('app/containers/App', () => {
   it('should render Header component', () => {
+    const App = loadWithMocks();
     const props = createProps();
     const $header = $(<App {...props} />)
       .shallowRender()
@@ -29,6 +51,7 @@ describe('app/containers/App', () => {
   });
 
   it('should delegate to partner areas SelectControl', () => {
+    const App = loadWithMocks();
     const props = createProps({
       partnerAreas: {
         selectedId: 'test.selectedId',
@@ -78,6 +101,7 @@ describe('app/containers/App', () => {
   });
 
   it('should delegate to trade regimes SelectControl', () => {
+    const App = loadWithMocks();
     const props = createProps({
       tradeRegimes: {
         selectedId: 'test.selectedId',
@@ -127,6 +151,7 @@ describe('app/containers/App', () => {
   });
 
   it('should render TradeViz component', () => {
+    const App = loadWithMocks();
     const props = createProps({ tradeData: { test: 'tradeData' } });
 
     const $tradeViz = $(<App {...props} />)
