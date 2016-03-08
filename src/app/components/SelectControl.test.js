@@ -79,7 +79,7 @@ describe.only('app/components/SelectControl', () => {
     assert.equal(actual, expected, 'selected the option via defaultValue prop');
   });
 
-  it.skip('should handle selection changes via onSelection callback prop', () => {
+  it('should handle selection changes via onSelection callback prop', () => {
     const props = { id: 'base', onSelection: spy() };
 
     const component = (
