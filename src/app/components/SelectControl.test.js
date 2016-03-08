@@ -6,31 +6,31 @@ import SelectControl from './SelectControl';
 
 describe.only('app/components/SelectControl', () => {
   it('should render wrapper div', () => {
-    const props = { id: 'base' };
+    const props = { id: 'foo' };
 
     const actual = $(<SelectControl {...props} />)
       .render()
-      .find('div[id=base-wrapper]')
+      .find('div[id=foo-wrapper]')
       .length;
     const expected = 1;
 
-    assert.equal(actual, expected, 'rendered 1 wrapper div based on baseId prop');
+    assert.equal(actual, expected, 'rendered 1 wrapper div based on id prop');
   });
 
-  it.skip('should render label with labelText prop', () => {
-    const props = { id: 'base', labelText: 'test.labelText' };
+  it('should render label with labelText prop', () => {
+    const props = { id: 'foo', labelText: 'test.labelText' };
 
     const actual = $(<SelectControl {...props} />)
       .render()
-      .find('div > label[htmlFor=base-select]')
+      .find('div > label[htmlFor=foo-select]')
       .text();
     const expected = 'test.labelText';
 
     assert.equal(actual, expected, 'label rendered with text from labelText prop');
   });
 
-  it.skip('should render children prop within select list', () => {
-    const props = { id: 'base' };
+  it('should render children prop within select list', () => {
+    const props = { id: 'foo' };
 
     const component = (
       <SelectControl {...props}>
@@ -41,7 +41,7 @@ describe.only('app/components/SelectControl', () => {
     );
     const $options = $(component)
       .render()
-      .find('div > select[id=base-select] option');
+      .find('div > select[id=foo-select] option');
 
     const actual = $options
       .map(optionNode => [optionNode.value, optionNode.text])
