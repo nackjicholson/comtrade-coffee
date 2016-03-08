@@ -4,16 +4,8 @@ import { Treemap } from 'react-d3';
 
 function TradeViz({ tradeData }) {
   // The loader gif is a span that just takes up space by default.
-  let loaderGif = <span style={{ height: 60, display: 'block' }} />;
-
-  // But if the tradeData.isFetching show a spinning UN badge.
-  if (tradeData.isFetching) {
-    loaderGif = <img src="/images/un_loader.gif" width="60" height="60" />;
-  }
-
-  return (
+  let content = (
     <div>
-      {loaderGif}
       <Treemap
         data={tradeData.data.valueTreemap}
         width={1000}
@@ -37,6 +29,13 @@ function TradeViz({ tradeData }) {
       <p>Last Updated: {tradeData.lastUpdated && new Date(tradeData.lastUpdated).toISOString()}</p>
     </div>
   );
+
+  // But if the tradeData.isFetching show a spinning UN badge.
+  if (tradeData.isFetching) {
+    content = <img src="/images/un_loader.gif" width="60" height="60" />;
+  }
+
+  return content;
 }
 
 export default TradeViz;
