@@ -55,7 +55,7 @@ describe.only('app/components/SelectControl', () => {
     assert.deepEqual(actual, expected, 'rendered option children within select list');
   });
 
-  it.skip('should be able to select a default option', () => {
+  it('should be able to select a default option', () => {
     const props = { id: 'base', defaultValue: 'bravo.value' };
 
     const component = (
