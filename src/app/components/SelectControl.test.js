@@ -4,7 +4,7 @@ import React from 'react';
 import { spy } from 'sinon';
 import SelectControl from './SelectControl';
 
-describe('app/components/SelectControl', () => {
+describe.only('app/components/SelectControl', () => {
   it('should render wrapper div', () => {
     const props = { id: 'base' };
 
@@ -17,7 +17,7 @@ describe('app/components/SelectControl', () => {
     assert.equal(actual, expected, 'rendered 1 wrapper div based on baseId prop');
   });
 
-  it('should render label with labelText prop', () => {
+  it.skip('should render label with labelText prop', () => {
     const props = { id: 'base', labelText: 'test.labelText' };
 
     const actual = $(<SelectControl {...props} />)
@@ -29,7 +29,7 @@ describe('app/components/SelectControl', () => {
     assert.equal(actual, expected, 'label rendered with text from labelText prop');
   });
 
-  it('should render children prop within select list', () => {
+  it.skip('should render children prop within select list', () => {
     const props = { id: 'base' };
 
     const component = (
@@ -55,7 +55,7 @@ describe('app/components/SelectControl', () => {
     assert.deepEqual(actual, expected, 'rendered option children within select list');
   });
 
-  it('should be able to select a default option', () => {
+  it.skip('should be able to select a default option', () => {
     const props = { id: 'base', defaultValue: 'bravo.value' };
 
     const component = (
@@ -79,7 +79,7 @@ describe('app/components/SelectControl', () => {
     assert.equal(actual, expected, 'selected the option via defaultValue prop');
   });
 
-  it('should handle selection changes via onSelection callback prop', () => {
+  it.skip('should handle selection changes via onSelection callback prop', () => {
     const props = { id: 'base', onSelection: spy() };
 
     const component = (
