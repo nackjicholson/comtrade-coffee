@@ -80,24 +80,16 @@ describe('app/components/SelectControl', () => {
   });
 
   it('should handle selection changes via onSelection callback prop', () => {
-    const props = { id: 'base', onSelection: spy() };
+    const props = { id: 'foo', onSelection: spy() };
 
-    const component = (
-      <SelectControl {...props}>
-        <option value="alpha.value">alpha.text</option>
-        <option value="bravo.value">bravo.text</option>
-        <option value="charlie.value">charlie.text</option>
-      </SelectControl>
-    );
-
-    $(component)
+    $(<SelectControl {...props} />)
       .render()
-      .find('div > select[id=base-select]')
-      .trigger('change', { target: { value: 'foo' } });
+      .find('div > select[id=foo-select]')
+      .trigger('change', { target: { value: 'bingo' } });
 
     assert(props.onSelection.calledOnce, 'onSelection callback prop called once');
     const actual = props.onSelection.args[0];
-    const expected = ['foo'];
+    const expected = ['bingo'];
 
     assert.deepEqual(actual, expected, 'onSelection callback called with change value');
   });
